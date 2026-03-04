@@ -128,7 +128,7 @@ function drawLines() {
 
             let dist = Math.sqrt((dots[i].x - dots[j].x) ** 2 + (dots[i].y - dots[j].y) ** 2);
 
-            if(dist<80) {
+            if(dist<70) {
                 let alpha = 1-(dist/100);
                 let hue = 290-(dist/2);
 
