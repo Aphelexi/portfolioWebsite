@@ -69,13 +69,13 @@ function createStars() {
     }
 }
 
-let mouseX = -100;
-let mouseY = -100;
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+const lineConnectionRadius = 180;
 
-canvas.addEventListener('mousemove', (event) => {
-    const rect = canvas.getBoundingClientRect();
-    mouseX = event.clientX - rect.left;
-    mouseY = event.clientY - rect.top;
+window.addEventListener('pointermove', (event) => {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
 });
 
 function drawBackground() {
@@ -125,18 +125,23 @@ function drawStars() {
 function drawLines() {
     for(let i = 0; i < dots.length; i++) {
         for(let j = i + 1; j < dots.length; j++) {
+            const dotA = dots[i];
+            const dotB = dots[j];
+            const dist = Math.sqrt((dotA.x - dotB.x) ** 2 + (dotA.y - dotB.y) ** 2);
+            const distToMouseA = Math.sqrt((dotA.x - mouseX) ** 2 + (dotA.y - mouseY) ** 2);
+            const distToMouseB = Math.sqrt((dotB.x - mouseX) ** 2 + (dotB.y - mouseY) ** 2);
 
-            let dist = Math.sqrt((dots[i].x - dots[j].x) ** 2 + (dots[i].y - dots[j].y) ** 2);
-
-            if(dist<70) {
-                let alpha = 1-(dist/100);
-                let hue = 290-(dist/2);
+            if(dist < 70 && distToMouseA < lineConnectionRadius && distToMouseB < lineConnectionRadius) {
+                const proximityFactor = Math.max(0, 1 - (Math.max(distToMouseA, distToMouseB) / lineConnectionRadius));
+                const fadeFactor = Math.max(0, 1 - (dist / 70));
+                const alpha = Math.min(1, 0.12 + proximityFactor * 0.88 + fadeFactor * 0.25);
+                let hue = 290 - (dist / 2);
 
                 ctx.strokeStyle = `hsla(${hue}, 100%, 40%, ${alpha})`;
                 ctx.lineWidth = 1;
                 ctx.beginPath();
-                ctx.moveTo(dots[i].x, dots[i].y);
-                ctx.lineTo(dots[j].x, dots[j].y);
+                ctx.moveTo(dotA.x, dotA.y);
+                ctx.lineTo(dotB.x, dotB.y);
                 ctx.stroke();
             }
         }
@@ -154,8 +159,9 @@ function animateDots() {
 
         if(distance < 60) {
             let angle = Math.atan2(dot.y - mouseY, dot.x - mouseX);
-            dot.x += Math.cos(angle) * 5;
-            dot.y += Math.sin(angle) * 5;
+            let repelStrength = (1 - (distance / 60)) ** 2 * 8;
+            dot.x += Math.cos(angle) * repelStrength;
+            dot.y += Math.sin(angle) * repelStrength;
         } else {
             dot.x += dot.dx;
             dot.y += dot.dy;
@@ -200,10 +206,12 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 const titleCard = document.querySelector(".title-card");
+const contactCard = document.querySelector(".contact-card");
 const projectCard1 = document.querySelector(".project-card-1");
 const projectCard2 = document.querySelector(".project-card-2");
 const projectCard3 = document.querySelector(".project-card-3");
 observer.observe(titleCard)
+observer.observe(contactCard);
 observer.observe(projectCard1);
 observer.observe(projectCard2);
 observer.observe(projectCard3);

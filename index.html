@@ -8,27 +8,46 @@
 </head>
 
 <body>
+    <header class = "topbar">
+        <nav class = "nav-ribbon" aria-label = "Main navigation">
+            <a href = "#top">Home</a>
+            <a href = "#projects">Projects</a>
+            <a href = "#contact">Contact</a>
+        </nav>
+    </header>
+
     <section class = "container">
         <canvas id = "dotCanvas"></canvas>
 
-        <div class = "title-card">
+        <div class = "title-card" id = "top">
             <h1>Welcome to my Portfolio!</h1>
-            <p1>A bunch of stuff I've done, aswell as my contact information!!!</p1>
+            <p>A bunch of stuff I've done, as well as my contact information!!!</p>
         </div>
 
-        <div class = "project-card-1">
-            <h1>Tactical Testing Ground</h1>
-            <p1>A Roblox game that I developed on my own, it's supposed to be a semi-realistic depiction of CQB combat!</p1>
-        </div>
-        
-        <div class = "project-card-2">
-            <h1>Self-Driving Robot</h1>
-            <p1>A self-driving robot that I designed, built, and programed almost completely on my own. Uses machine vision combined with PID encoding to detect and follow between black walls, and can detect obstacles!</p1>
+        <div class = "contact-card" id = "contact">
+            <h2>Contact</h2>
+            <div class = "contact-links">
+                <a href = "mailto:martinsu2007@gmail.com">martinsu2007@gmail.com</a>
+                <a href = "https://github.com/Aphelexi" target = "_blank" rel = "noreferrer">GitHub</a>
+                <a href = "https://www.linkedin.com/in/martin-su-aa5772392/" target = "_blank" rel = "noreferrer">LinkedIn</a>
+            </div>
         </div>
 
-        <div class = "project-card-3">
-            <h1>Placeholder</h1>
-            <p1>Skibidi Slicers</p1>
+        <div class = "project-section" id = "projects">
+            <div class = "project-card-1">
+                <h1>Tactical Testing Ground</h1>
+                <p>A Roblox game that I developed on my own, it's supposed to be a semi-realistic depiction of CQB combat!</p>
+            </div>
+            
+            <div class = "project-card-2">
+                <h1>Self-Driving Robot</h1>
+                <p>A self-driving robot that I designed, built, and programed almost completely on my own. Uses machine vision combined with PID encoding to detect and follow between black walls, and can detect obstacles!</p>
+            </div>
+
+            <div class = "project-card-3">
+                <h1>Placeholder</h1>
+                <p>Skibidi Slicers</p>
+            </div>
         </div>
     </section>
 
