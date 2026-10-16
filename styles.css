@@ -214,7 +214,7 @@ h1 {
     margin-bottom: 20px;
     font-family: "Lato", sans-serif;
     font-weight: 300;
-    font-style: italic;
+    font-style: default;
     margin-bottom: 30px;
 }
 
@@ -223,7 +223,7 @@ p {
     margin-bottom: 20px;
     font-family: "Lato", sans-serif;
     font-weight: 200;
-    font-style: italic;
+    font-style: default;
     letter-spacing: 0.5px;
     text-align: center;
 }
@@ -233,7 +233,7 @@ p1 {
     margin-bottom: 20px;
     font-family: "Lato", sans-serif;
     font-weight: 200;
-    font-style: italic;
+    font-style: default;
     letter-spacing: 0.5px;
 }
 
